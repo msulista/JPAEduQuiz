@@ -6,7 +6,9 @@
 package dao;
 
 import java.util.List;
+import javax.persistence.EntityManager;
 import model.Pergunta;
+import util.JpaUtil;
 
 /**
  *
@@ -16,23 +18,45 @@ public class PerguntaDaoBd implements InterfaceDao<Pergunta>{
 
     @Override
     public void inserir(Pergunta bean) {
+        EntityManager em = JpaUtil.getEntityManager();
+        em.getTransaction().begin();
+
+        Pergunta p = new Pergunta();
+        p.setMateria(bean.getMateria());
+        p.setPerguntaText(bean.getPerguntaText());
+        p.setPeso(bean.getPeso());
+
+        em.getTransaction().commit();
+        em.close();
         
     }
 
     @Override
     public void deletar(Pergunta bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = JpaUtil.getEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(bean));
+        em.getTransaction().commit();
+        em.close();
     }
 
     @Override
     public void atualizar(Pergunta bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
-    public List listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Pergunta> listar() {
+        EntityManager em = JpaUtil.getEntityManager();
+        List<Pergunta> listPergunta = em.createQuery("SELECT p FROM Pergunta p").getResultList();
+        em.close();
+        return (listPergunta);
     }
     
-    
+    public Pergunta buscarPorId(Long id){
+        EntityManager em = JpaUtil.getEntityManager();
+        Pergunta pergunta = em.find(Pergunta.class, id);
+        em.close();
+        return (pergunta);
+    }
 }
