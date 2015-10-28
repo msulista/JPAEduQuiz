@@ -7,9 +7,12 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,6 +26,9 @@ public class Resposta implements Serializable {
     private Long id;
     private String respostaText;
     private boolean verdadeira;
+    @JoinColumn(name = "idPergunta", referencedColumnName = "idPergunta")
+    @OneToOne(optional = false, fetch = FetchType.EAGER)    
+    private Pergunta idPergunta;
 
     public Long getId() {
         return id;
@@ -46,6 +52,14 @@ public class Resposta implements Serializable {
 
     public void setVerdadeira(boolean verdadeira) {
         this.verdadeira = verdadeira;
+    }
+
+    public Pergunta getIdPergunta() {
+        return idPergunta;
+    }
+
+    public void setIdPergunta(Pergunta idPergunta) {
+        this.idPergunta = idPergunta;
     }
     
     @Override

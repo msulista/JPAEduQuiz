@@ -7,9 +7,12 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,6 +27,9 @@ public class Pergunta implements Serializable {
     private String perguntaText;
     private double peso;
     private String materia;
+    @JoinColumn(name = "idQuiz", referencedColumnName = "idQuiz")
+    @OneToMany   
+    private Quiz idQuiz;
 
     public Long getId() {
         return id;
@@ -55,6 +61,14 @@ public class Pergunta implements Serializable {
 
     public void setMateria(String materia) {
         this.materia = materia;
+    }
+
+    public Quiz getIdQuiz() {
+        return idQuiz;
+    }
+
+    public void setIdQuiz(Quiz idQuiz) {
+        this.idQuiz = idQuiz;
     }
     
     @Override

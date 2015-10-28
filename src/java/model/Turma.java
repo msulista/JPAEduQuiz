@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -26,6 +28,9 @@ public class Turma implements Serializable {
     private String nome;
     private String materia;
     private int qtdAlunos;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
+    @ManyToMany 
+    private Usuario idUsuario;
     
     private List<Usuario> alunos;
 
@@ -75,6 +80,14 @@ public class Turma implements Serializable {
     public void setAlunos(List<Usuario> alunos) {
         this.alunos = alunos;
     }    
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     @Override
     public int hashCode() {

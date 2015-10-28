@@ -8,9 +8,12 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,6 +29,9 @@ public class Quiz implements Serializable {
     private Date termino;
     private Date tempoResposta;
     private boolean publicado;
+    @JoinColumn(name = "idQuiz", referencedColumnName = "idQuiz")
+    @OneToMany
+    private Turma idTurma;
 
     public Long getId() {
         return id;
@@ -65,6 +71,14 @@ public class Quiz implements Serializable {
 
     public void setPublicado(boolean publicado) {
         this.publicado = publicado;
+    }
+
+    public Turma getIdTurma() {
+        return idTurma;
+    }
+
+    public void setIdTurma(Turma idTurma) {
+        this.idTurma = idTurma;
     }
     
     @Override

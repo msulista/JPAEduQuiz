@@ -7,9 +7,13 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -25,6 +29,9 @@ public class Usuario implements Serializable {
     private String telefone;
     private String email;
     private String senha;
+    @JoinColumn(name = "idTurma", referencedColumnName = "idTurma")
+    @ManyToMany 
+    private Turma idTurma;
     
 
     public Long getIdUsuario() {
@@ -66,7 +73,15 @@ public class Usuario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
+    public Turma getIdTurma() {
+        return idTurma;
+    }
+
+    public void setIdTurma(Turma idTurma) {
+        this.idTurma = idTurma;
+    }
+        
     @Override
     public int hashCode() {
         int hash = 0;
