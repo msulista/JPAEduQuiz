@@ -30,7 +30,7 @@ public class Turma implements Serializable {
     private int qtdAlunos;
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     @ManyToMany 
-    private Usuario idUsuario;
+    private Usuario usuario;
     
     private List<Usuario> alunos;
 
@@ -81,12 +81,12 @@ public class Turma implements Serializable {
         this.alunos = alunos;
     }    
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
