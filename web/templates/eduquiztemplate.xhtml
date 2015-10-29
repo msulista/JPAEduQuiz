@@ -6,6 +6,7 @@
 
     <h:head>
         <meta charset="UTF-8"/>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.blue-red.min.css"/>
         <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
@@ -14,7 +15,7 @@
         <title>EduQuiz</title>
         <style>
             .transparente{
-                background: url('./img/transparente.jpg') center / cover;
+                background: url('../img/background.png') center / cover;
 
             }
             a.mdl-navigation__link {
@@ -68,8 +69,8 @@
 
     <h:body>
 
-        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header "> 
-            <header class="mdl-layout__header"> 
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header transparente"> 
+            <header class="mdl-layout__header mdl-layout__header--transparent"> 
                 <div class="mdl-layout__header-row">
                     <span class="mdl-layout-title">EduQuiz</span> 	
                     <div class="mdl-layout-spacer"></div>
@@ -107,7 +108,7 @@
                         <div class="mdl-cell mdl-cell--2-col">
 
                         </div>
-                        <div class="mdl-cell mdl-cell--9-col">
+                        <div class="mdl-cell mdl-cell--9-col background-branco" style="padding:50px;">
 
                             <h:form>
                                 <ui:insert name="content">Content</ui:insert>
