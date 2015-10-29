@@ -24,10 +24,10 @@ public class UsuarioDaoBd implements InterfaceDao<Usuario>{
 
     @Override
     public void inserir(Usuario bean) {
-       
+            
                 EntityManager em = JpaUtil.getEntityManager();
                 em.getTransaction().begin();
-                
+            try{ 
                 Usuario usuario = new Usuario();
                 usuario.setNome(bean.getNome());
                 usuario.setTelefone(bean.getTelefone());
@@ -35,7 +35,14 @@ public class UsuarioDaoBd implements InterfaceDao<Usuario>{
                 usuario.setSenha(bean.getSenha());
                 
                 em.getTransaction().commit();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally{
                 em.close();
+            }
         
     }
 

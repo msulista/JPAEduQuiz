@@ -15,7 +15,8 @@ import javax.persistence.Persistence;
  */
 public class JpaUtil {
     
-    public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("ExemploPU");
+    public static  EntityManagerFactory emf;
+    static {emf = Persistence.createEntityManagerFactory("ExemploPU");}
     
     public static EntityManager getEntityManager(){
         

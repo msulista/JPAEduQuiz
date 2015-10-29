@@ -31,8 +31,15 @@ public class UsuarioMb {
     private DataModel listaUsuarios;
 
     public UsuarioMb() {
-        this.usuario = new Usuario();
-        this.usuarioDao = new UsuarioDaoBd();        
+        usuario = new Usuario();
+        usuarioDao = new UsuarioDaoBd();    
+        
+        usuario.setNome("Fabrizio");
+        usuario.setSenha("123");
+        usuario.setTelefone("11 4444-5555");
+        usuario.setEmail("fabrizio@algo.com");
+        
+        usuarioDao.inserir(usuario);
     }
     
     public DataModel retornaListaDeUsuarios() {
