@@ -20,24 +20,16 @@ public class UsuarioDaoBd implements InterfaceDao<Usuario>{
     @Override
     public void inserir(Usuario bean) {
             
-            EntityManager em = JpaUtil.getEntityManager();
-            em.getTransaction().begin();
-            try{ 
-                Usuario usuario = new Usuario();
-                usuario.setNome(bean.getNome());
-                usuario.setTelefone(bean.getTelefone());
-                usuario.setEmail(bean.getEmail());
-                usuario.setSenha(bean.getSenha());
-                
-                em.getTransaction().commit();
-            }
-            catch(Exception ex)
-            {
-                ex.printStackTrace();
-            }
-            finally{
-                em.close();
-            }
+        EntityManager em = JpaUtil.getEntityManager();
+        em.getTransaction().begin();
+           
+        if(bean.getIdUsuario() == null){
+            em.persist(bean);
+        }else{
+            em.merge(bean);
+        }
+        em.getTransaction().commit();
+        em.close();
         
     }
 

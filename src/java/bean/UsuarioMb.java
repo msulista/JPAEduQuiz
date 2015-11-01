@@ -32,8 +32,7 @@ public class UsuarioMb {
 
     public UsuarioMb() {
         usuario = new Usuario();
-        usuarioDao = new UsuarioDaoBd();   
-       
+        usuarioDao = new UsuarioDaoBd();         
     }
     
     public DataModel retornaListaDeUsuarios() {
@@ -53,8 +52,7 @@ public class UsuarioMb {
     
     public void cadastrarUsuario(){
         
-        this.usuarioDao.inserir(usuario);
-        
+        this.usuarioDao.inserir(usuario);        
     }
     
 }
