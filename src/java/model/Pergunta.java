@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ import javax.validation.constraints.Size;
  *
  * @author Fabregas
  */
-@MappedSuperclass
+@Entity
 @Table(name = "pergunta")
 public class Pergunta implements Serializable {
     private static final long serialVersionUID = 1L;

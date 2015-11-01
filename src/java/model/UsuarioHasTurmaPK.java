@@ -9,17 +9,22 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Fabregas
  */
-@Embeddable
+@Entity
 public class UsuarioHasTurmaPK implements Serializable {
+    
+    @Id
+    private int idUserHasTurPk;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "IdUsuario")
+    @Column(name = "IdUsuario")    
     private int idUsuario;
     @Basic(optional = false)
     @NotNull

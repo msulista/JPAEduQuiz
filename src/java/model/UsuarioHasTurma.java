@@ -7,14 +7,14 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.EmbeddedId;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
  *
  * @author Fabregas
  */
-@MappedSuperclass
+@Entity
 @Table(name = "usuario_has_turma")
 public class UsuarioHasTurma implements Serializable {
     private static final long serialVersionUID = 1L;

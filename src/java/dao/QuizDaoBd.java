@@ -8,8 +8,6 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.Quiz;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import util.JpaUtil;
 
 /**
@@ -19,9 +17,6 @@ import util.JpaUtil;
 public class QuizDaoBd implements InterfaceDao<Quiz>{
     
    
-   
-    private Session sessao;
-    private Transaction trans;
 
     @Override
     public void inserir(Quiz quiz) {
@@ -42,7 +37,7 @@ public class QuizDaoBd implements InterfaceDao<Quiz>{
                 ex.printStackTrace();
         }
         finally{
-            sessao.close();
+            
         }
        }
 
