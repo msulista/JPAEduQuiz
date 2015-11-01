@@ -6,36 +6,64 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author marcus.rodrigues
+ * @author Fabregas
  */
-@Entity
+@MappedSuperclass
+@Table(name = "resposta")
 public class Resposta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdResposta")
+    private Integer idResposta;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "resposta_text")
     private String respostaText;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "verdadeira")
     private boolean verdadeira;
-    @JoinColumn(name = "idPergunta", referencedColumnName = "idPergunta")
-    @OneToOne(optional = false, fetch = FetchType.EAGER)    
-    private Pergunta idPergunta;
+    @JoinColumn(name = "IdPergunta", referencedColumnName = "IdPergunta")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Pergunta pergunta;
 
-    public Long getId() {
-        return id;
+    public Resposta() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Resposta(Integer idResposta) {
+        this.idResposta = idResposta;
+    }
+
+    public Resposta(Integer idResposta, String respostaText, boolean verdadeira) {
+        this.idResposta = idResposta;
+        this.respostaText = respostaText;
+        this.verdadeira = verdadeira;
+    }
+
+    public Integer getIdResposta() {
+        return idResposta;
+    }
+
+    public void setIdResposta(Integer idResposta) {
+        this.idResposta = idResposta;
     }
 
     public String getRespostaText() {
@@ -46,7 +74,7 @@ public class Resposta implements Serializable {
         this.respostaText = respostaText;
     }
 
-    public boolean isVerdadeira() {
+    public boolean getVerdadeira() {
         return verdadeira;
     }
 
@@ -54,18 +82,18 @@ public class Resposta implements Serializable {
         this.verdadeira = verdadeira;
     }
 
-    public Pergunta getIdPergunta() {
-        return idPergunta;
+    public Pergunta getPergunta() {
+        return pergunta;
     }
 
-    public void setIdPergunta(Pergunta idPergunta) {
-        this.idPergunta = idPergunta;
+    public void setPergunta(Pergunta pergunta) {
+        this.pergunta = pergunta;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idResposta != null ? idResposta.hashCode() : 0);
         return hash;
     }
 
@@ -76,7 +104,7 @@ public class Resposta implements Serializable {
             return false;
         }
         Resposta other = (Resposta) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idResposta == null && other.idResposta != null) || (this.idResposta != null && !this.idResposta.equals(other.idResposta))) {
             return false;
         }
         return true;
@@ -84,7 +112,7 @@ public class Resposta implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Resposta[ id=" + id + " ]";
+        return "pojos.Resposta[ idResposta=" + idResposta + " ]";
     }
     
 }

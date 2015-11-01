@@ -23,8 +23,8 @@ public class PerguntaDaoBd implements InterfaceDao<Pergunta>{
 
         Pergunta p = new Pergunta();
         p.setMateria(bean.getMateria());
-        p.setPerguntaText(bean.getPerguntaText());
-        p.setPeso(bean.getPeso());
+        p.setPergunta(bean.getPergunta());
+        p.setPontuacao(bean.getPontuacao());
 
         em.getTransaction().commit();
         em.close();

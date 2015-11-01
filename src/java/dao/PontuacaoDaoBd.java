@@ -7,21 +7,21 @@ package dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.Resultado;
+import model.Pontuacao;
 import util.JpaUtil;
 
 /**
  *
  * @author marcus.rodrigues
  */
-public class ResultadoDaoBd implements InterfaceDao<Resultado>{
+public class PontuacaoDaoBd implements InterfaceDao<Pontuacao>{
 
     @Override
-    public void inserir(Resultado bean) {
+    public void inserir(Pontuacao bean) {
         EntityManager em = JpaUtil.getEntityManager();
         em.getTransaction().begin();
         
-        Resultado resultado = new Resultado();
+        Pontuacao resultado = new Pontuacao();
         resultado.setPontuacao(bean.getPontuacao());
         
         em.getTransaction().commit();
@@ -29,7 +29,7 @@ public class ResultadoDaoBd implements InterfaceDao<Resultado>{
     }
 
     @Override
-    public void deletar(Resultado bean) {
+    public void deletar(Pontuacao bean) {
         EntityManager em = JpaUtil.getEntityManager();
         em.getTransaction().begin();
         
@@ -40,23 +40,23 @@ public class ResultadoDaoBd implements InterfaceDao<Resultado>{
     }
 
     @Override
-    public void atualizar(Resultado bean) {
+    public void atualizar(Pontuacao bean) {
         
     }
 
     @Override
     public List listar() {
         EntityManager em = JpaUtil.getEntityManager();
-        List<Resultado> listaResultados = em.createQuery("SELECT r FROM Resultado r").getResultList();
+        List<Pontuacao> listaPontos = em.createQuery("SELECT p FROM Pontuacao p").getResultList();
         em.close();
-        return (listaResultados);
+        return (listaPontos);
     }
     
-    public Resultado buscaPorId(Long id){
+    public Pontuacao buscaPorId(Long id){
         EntityManager em = JpaUtil.getEntityManager();
-        Resultado resultado = em.find(Resultado.class, id);
+        Pontuacao pontuacao = em.find(Pontuacao.class, id);
         em.close();
-        return (resultado);
+        return (pontuacao);
     }
     
     

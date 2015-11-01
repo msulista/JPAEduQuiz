@@ -6,47 +6,59 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Entity;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author marcus.rodrigues
+ * @author Fabregas
  */
-@Entity
+@MappedSuperclass
+@Table(name = "turma")
 public class Turma implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdTurma")
+    private Integer idTurma;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "nome")
     private String nome;
-    private String materia;
-    private int qtdAlunos;
-    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
-    @ManyToMany 
-    private Usuario usuario;
-    
-    private List<Usuario> alunos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTurma", fetch = FetchType.EAGER)
+    private List<Quiz> quizList;
 
     public Turma() {
+    }
+
+    public Turma(Integer idTurma) {
+        this.idTurma = idTurma;
+    }
+
+    public Turma(Integer idTurma, String nome) {
+        this.idTurma = idTurma;
         this.nome = nome;
-        this.materia = materia;
-        this.qtdAlunos = qtdAlunos;
-        this.alunos = new ArrayList<>();
     }
 
-    public Long getId() {
-        return id;
+    public Integer getIdTurma() {
+        return idTurma;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdTurma(Integer idTurma) {
+        this.idTurma = idTurma;
     }
 
     public String getNome() {
@@ -57,42 +69,18 @@ public class Turma implements Serializable {
         this.nome = nome;
     }
 
-    public String getMateria() {
-        return materia;
+    public List<Quiz> getQuizList() {
+        return quizList;
     }
 
-    public void setMateria(String materia) {
-        this.materia = materia;
-    }
-
-    public int getQtdAlunos() {
-        return qtdAlunos;
-    }
-
-    public void setQtdAlunos(int qtdAlunos) {
-        this.qtdAlunos = qtdAlunos;
-    }
-
-    public List<Usuario> getAlunos() {
-        return alunos;
-    }
-
-    public void setAlunos(List<Usuario> alunos) {
-        this.alunos = alunos;
-    }    
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setQuizList(List<Quiz> quizList) {
+        this.quizList = quizList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idTurma != null ? idTurma.hashCode() : 0);
         return hash;
     }
 
@@ -103,7 +91,7 @@ public class Turma implements Serializable {
             return false;
         }
         Turma other = (Turma) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idTurma == null && other.idTurma != null) || (this.idTurma != null && !this.idTurma.equals(other.idTurma))) {
             return false;
         }
         return true;
@@ -111,7 +99,7 @@ public class Turma implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Turma[ id=" + id + " ]";
+        return "pojos.Turma[ idTurma=" + idTurma + " ]";
     }
     
 }

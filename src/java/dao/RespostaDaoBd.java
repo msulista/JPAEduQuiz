@@ -23,7 +23,7 @@ public class RespostaDaoBd implements InterfaceDao<Resposta>{
         
         Resposta r = new Resposta();
         r.setRespostaText(bean.getRespostaText());
-        r.setVerdadeira(bean.isVerdadeira());
+        r.setVerdadeira(bean.getVerdadeira());
         
         em.getTransaction().commit();
         em.close();

@@ -6,53 +6,91 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author marcus.rodrigues
+ * @author Fabregas
  */
-@Entity
+@MappedSuperclass
+@Table(name = "pergunta")
 public class Pergunta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String perguntaText;
-    private double peso;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdPergunta")
+    private Integer idPergunta;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "pergunta")
+    private String pergunta;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "pontuacao")
+    private double pontuacao;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 2147483647)
+    @Column(name = "materia")
     private String materia;
-    @JoinColumn(name = "idQuiz", referencedColumnName = "idQuiz")
-    @OneToMany   
-    private Quiz idQuiz;
+    @JoinColumn(name = "IdQuiz", referencedColumnName = "IdQuiz")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Quiz quiz;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPergunta", fetch = FetchType.EAGER)
+    private List<Resposta> respostaList;
 
-    public Long getId() {
-        return id;
+    public Pergunta() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Pergunta(Integer idPergunta) {
+        this.idPergunta = idPergunta;
     }
 
-    public String getPerguntaText() {
-        return perguntaText;
+    public Pergunta(Integer idPergunta, String pergunta, double pontuacao, String materia) {
+        this.idPergunta = idPergunta;
+        this.pergunta = pergunta;
+        this.pontuacao = pontuacao;
+        this.materia = materia;
     }
 
-    public void setPerguntaText(String perguntaText) {
-        this.perguntaText = perguntaText;
+    public Integer getIdPergunta() {
+        return idPergunta;
     }
 
-    public double getPeso() {
-        return peso;
+    public void setIdPergunta(Integer idPergunta) {
+        this.idPergunta = idPergunta;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public String getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
+    }
+
+    public double getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(double pontuacao) {
+        this.pontuacao = pontuacao;
     }
 
     public String getMateria() {
@@ -63,18 +101,26 @@ public class Pergunta implements Serializable {
         this.materia = materia;
     }
 
-    public Quiz getIdQuiz() {
-        return idQuiz;
+    public Quiz getQuiz() {
+        return quiz;
     }
 
-    public void setIdQuiz(Quiz idQuiz) {
-        this.idQuiz = idQuiz;
+    public void setIdQuiz(Quiz quiz) {
+        this.quiz = quiz;
     }
-    
+
+    public List<Resposta> getRespostaList() {
+        return respostaList;
+    }
+
+    public void setRespostaList(List<Resposta> respostaList) {
+        this.respostaList = respostaList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idPergunta != null ? idPergunta.hashCode() : 0);
         return hash;
     }
 
@@ -85,7 +131,7 @@ public class Pergunta implements Serializable {
             return false;
         }
         Pergunta other = (Pergunta) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idPergunta == null && other.idPergunta != null) || (this.idPergunta != null && !this.idPergunta.equals(other.idPergunta))) {
             return false;
         }
         return true;
@@ -93,7 +139,7 @@ public class Pergunta implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Pergunta[ id=" + id + " ]";
+        return "pojos.Pergunta[ idPergunta=" + idPergunta + " ]";
     }
     
 }

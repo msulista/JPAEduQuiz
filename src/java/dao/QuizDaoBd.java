@@ -33,7 +33,7 @@ public class QuizDaoBd implements InterfaceDao<Quiz>{
                 q.setInicio(quiz.getInicio());
                 q.setTermino(quiz.getTermino());
                 q.setTempoResposta(quiz.getTempoResposta());
-                q.setPublicado(quiz.isPublicado());
+                q.setEstado(quiz.getEstado());
                 
                 em.getTransaction().commit();
                 em.close();

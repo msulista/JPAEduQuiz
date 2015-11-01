@@ -7,26 +7,21 @@ package dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.Quiz;
 import model.Usuario;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import util.JpaUtil;
 
 /**
  *
  * @author marcus.rodrigues
  */
-public class UsuarioDaoBd implements InterfaceDao<Usuario>{
+public class UsuarioDaoBd implements InterfaceDao<Usuario>{  
     
-    private Session sessao;
-    private Transaction trans;
 
     @Override
     public void inserir(Usuario bean) {
             
-                EntityManager em = JpaUtil.getEntityManager();
-                em.getTransaction().begin();
+            EntityManager em = JpaUtil.getEntityManager();
+            em.getTransaction().begin();
             try{ 
                 Usuario usuario = new Usuario();
                 usuario.setNome(bean.getNome());
@@ -70,7 +65,4 @@ public class UsuarioDaoBd implements InterfaceDao<Usuario>{
         em.close();
         return (listaUsuario);
     }
-    
-    
-    
 }

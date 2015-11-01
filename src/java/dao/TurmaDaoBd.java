@@ -23,9 +23,6 @@ public class TurmaDaoBd implements InterfaceDao<Turma>{
         
         Turma turma = new Turma();
         turma.setNome(bean.getNome());
-        turma.setMateria(bean.getMateria());
-        turma.setQtdAlunos(bean.getQtdAlunos());
-        turma.setAlunos(bean.getAlunos());
         
         em.getTransaction().commit();
         em.close();        

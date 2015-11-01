@@ -7,38 +7,84 @@ package model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Entity;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author marcus.rodrigues
+ * @author Fabregas
  */
-@Entity
+@MappedSuperclass
+@Table(name = "quiz")
 public class Quiz implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "IdQuiz")
+    private Integer idQuiz;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "inicio")
+    @Temporal(TemporalType.DATE)
     private Date inicio;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "termino")
+    @Temporal(TemporalType.DATE)
     private Date termino;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "tempo_resposta")
+    @Temporal(TemporalType.TIME)
     private Date tempoResposta;
-    private boolean publicado;
-    @JoinColumn(name = "idQuiz", referencedColumnName = "idQuiz")
-    @OneToMany
-    private Turma idTurma;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "estado")
+    private boolean estado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
+    private List<Pontuacao> pontuacaoList;
+    @JoinColumn(name = "IdTurma", referencedColumnName = "IdTurma")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    private Turma turma;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
+    private List<Pergunta> perguntaList;
 
-    public Long getId() {
-        return id;
+    public Quiz() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Quiz(Integer idQuiz) {
+        this.idQuiz = idQuiz;
+    }
+
+    public Quiz(Integer idQuiz, Date inicio, Date termino, Date tempoResposta, boolean estado) {
+        this.idQuiz = idQuiz;
+        this.inicio = inicio;
+        this.termino = termino;
+        this.tempoResposta = tempoResposta;
+        this.estado = estado;
+    }
+
+    public Integer getIdQuiz() {
+        return idQuiz;
+    }
+
+    public void setIdQuiz(Integer idQuiz) {
+        this.idQuiz = idQuiz;
     }
 
     public Date getInicio() {
@@ -65,26 +111,42 @@ public class Quiz implements Serializable {
         this.tempoResposta = tempoResposta;
     }
 
-    public boolean isPublicado() {
-        return publicado;
+    public boolean getEstado() {
+        return estado;
     }
 
-    public void setPublicado(boolean publicado) {
-        this.publicado = publicado;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
-    public Turma getIdTurma() {
-        return idTurma;
+    public List<Pontuacao> getPontuacaoList() {
+        return pontuacaoList;
     }
 
-    public void setIdTurma(Turma idTurma) {
-        this.idTurma = idTurma;
+    public void setPontuacaoList(List<Pontuacao> pontuacaoList) {
+        this.pontuacaoList = pontuacaoList;
     }
-    
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setIdTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public List<Pergunta> getPerguntaList() {
+        return perguntaList;
+    }
+
+    public void setPerguntaList(List<Pergunta> perguntaList) {
+        this.perguntaList = perguntaList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idQuiz != null ? idQuiz.hashCode() : 0);
         return hash;
     }
 
@@ -95,7 +157,7 @@ public class Quiz implements Serializable {
             return false;
         }
         Quiz other = (Quiz) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idQuiz == null && other.idQuiz != null) || (this.idQuiz != null && !this.idQuiz.equals(other.idQuiz))) {
             return false;
         }
         return true;
@@ -103,7 +165,7 @@ public class Quiz implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Quiz[ id=" + id + " ]";
+        return "pojos.Quiz[ idQuiz=" + idQuiz + " ]";
     }
     
 }
