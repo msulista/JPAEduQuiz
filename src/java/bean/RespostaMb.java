@@ -36,16 +36,16 @@ public class RespostaMb {
         this.resposta = resposta;
     }
 
-    public void cadastraRespostaFalsa(Pergunta pergunta){
-        this.resposta.setPergunta(pergunta);
+    public void cadastraRespostaFalsa(){
+        this.resposta.setPergunta(new Pergunta(1));
         this.resposta.setVerdadeira(false);
         this.respostaDao.inserir(resposta);
     }
-    public void cadastraRespostaVerdadeira(Pergunta pergunta){
-        this.resposta.setPergunta(pergunta);
-        this.resposta.setVerdadeira(true);
-        this.respostaDao.inserir(resposta);
-    }
+//    public void cadastraRespostaVerdadeira(Pergunta pergunta){
+//        this.resposta.setPergunta(pergunta);
+//        this.resposta.setVerdadeira(true);
+//        this.respostaDao.inserir(resposta);
+//    }
     
     @Override
     public int hashCode() {

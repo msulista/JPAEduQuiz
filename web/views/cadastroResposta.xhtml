@@ -7,41 +7,28 @@
     <body>
 
         <ui:composition template="./../templates/eduquiztemplate.xhtml">
-
             <ui:define name="content">
-
-                <h1>Cadastro de Pergunta</h1>  
+                <h1>Cadastro de Resposta</h1>  
                 <div class="mdl-grid">
-
                     <div class="mdl-cell mdl-cell--3-col">
                         <h4>Explicação</h4>
-                        <p>Nesta parte do site você pode cadastrar uma pergunta nova no sistema</p>
+                        <p>Nesta parte do site você pode cadastrar uma resposta nova no sistema</p>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-cell--top mdl-cell--hide-phone">
                         </div>
                         <div class="mdl-cell--middle">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
-                                <h:inputText id="txtPergunta" class="mdl-textfield__input" value="#{perguntaMb.pergunta.pergunta}" required="true"/>
-                                <h:outputLabel for="txtPergunta" class="mdl-textfield__label" value="#{str.pergunta}"/>
+                                <h:inputText id="txtResposta" class="mdl-textfield__input" value="#{respostaMb.resposta.respostaText}" required="true"/>
+                                <h:outputLabel for="txtResposta" class="mdl-textfield__label" value="#{str.respostaCorreta}"/>
                                 <span class="mdl-textfield__error">Apenas letras</span>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
-                                <h:inputText id="txtMateria" class="mdl-textfield__input" value="#{perguntaMb.pergunta.materia}" required="true"/>
-                                <h:outputLabel for="txtMateria" class="mdl-textfield__label" value="#{str.materia}"/>
-                                <span class="mdl-textfield__error">Apenas letras</span>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
-                                <h:inputText id="txtPontos" class="mdl-textfield__input" value="#{perguntaMb.pergunta.pontuacao}" required="true"/>
-                                <h:outputLabel for="txtPostos" class="mdl-textfield__label" value="#{str.pontuacao}"/>
-                                <span class="mdl-textfield__error">Apenas numeros</span>
-                            </div> 
+                            </div>                             
                         </div>
                     </div>
                     <div class="mdl-cell--bottom">
                             <h:commandButton id="btnAdicionar" value="Adicionar"
                                              class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" 
-                                             action="#{perguntaMb.cadastraPergunta()}"/>
+                                             action="#{respostaMb.cadastraRespostaFalsa()}"/>
                     </div>
                 </div>                     
                 <h:messages tooltip="true" errorStyle="color:red" showDetail="false"/>
