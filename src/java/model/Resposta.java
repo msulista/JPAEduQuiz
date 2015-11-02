@@ -30,7 +30,7 @@ public class Resposta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IdResposta")
+    @Column(name = "idResposta")
     private Integer idResposta;
     @Basic(optional = false)
     @NotNull
@@ -41,7 +41,7 @@ public class Resposta implements Serializable {
     @NotNull
     @Column(name = "verdadeira")
     private boolean verdadeira;
-    @JoinColumn(name = "IdPergunta", referencedColumnName = "IdPergunta")
+    @JoinColumn(name = "idPergunta", referencedColumnName = "idPergunta")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Pergunta pergunta;
 

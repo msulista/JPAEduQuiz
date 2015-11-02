@@ -8,8 +8,8 @@ package bean;
 import dao.RespostaDaoBd;
 import java.util.Objects;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import model.Pergunta;
 import model.Resposta;
 
 /**
@@ -22,11 +22,12 @@ public class RespostaMb {
 
     private Resposta resposta;
     private RespostaDaoBd respostaDao;
+    
     public RespostaMb() {
         resposta = new Resposta();
         respostaDao = new RespostaDaoBd();
-    }
-
+    }    
+    
     public Resposta getResposta() {
         return resposta;
     }
@@ -35,6 +36,17 @@ public class RespostaMb {
         this.resposta = resposta;
     }
 
+    public void cadastraRespostaFalsa(Pergunta pergunta){
+        this.resposta.setPergunta(pergunta);
+        this.resposta.setVerdadeira(false);
+        this.respostaDao.inserir(resposta);
+    }
+    public void cadastraRespostaVerdadeira(Pergunta pergunta){
+        this.resposta.setPergunta(pergunta);
+        this.resposta.setVerdadeira(true);
+        this.respostaDao.inserir(resposta);
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

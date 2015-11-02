@@ -7,6 +7,7 @@ package dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import model.Pergunta;
 import model.Resposta;
 import util.JpaUtil;
 
@@ -21,9 +22,11 @@ public class RespostaDaoBd implements InterfaceDao<Resposta>{
         EntityManager em = JpaUtil.getEntityManager();
         em.getTransaction().begin();
         
-        Resposta r = new Resposta();
-        r.setRespostaText(bean.getRespostaText());
-        r.setVerdadeira(bean.getVerdadeira());
+        if(bean.getIdResposta() == null){           
+            em.persist(bean);
+        }else{
+            em.merge(bean);
+        }
         
         em.getTransaction().commit();
         em.close();

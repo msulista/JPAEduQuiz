@@ -19,8 +19,6 @@
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-cell--top mdl-cell--hide-phone">
-
-
                         </div>
                         <div class="mdl-cell--middle">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
@@ -39,18 +37,33 @@
                                 <span class="mdl-textfield__error">Apenas numeros</span>
                             </div> 
                         </div>
-                        <div class="mdl-cell--bottom">
+                    </div>
+                    <div class="mdl-cell--bottom">
                             <h:commandButton id="btnAdicionar" value="Adicionar"
                                              class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" 
                                              action="#{perguntaMb.cadastraPergunta()}"/>
-                        </div>
                     </div>
-
-                </div>                 
-
+                </div> 
+                <h1>Respostas</h1>
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <div class="mdl-cell--top mdl-cell--hide-phone">
+                        </div>
+                        <h:form>
+                        <div class="mdl-cell--middle">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtResp1" class="mdl-textfield__input" value="#{respostaMb.resposta.respostaText}" required="false"/>
+                                <h:outputLabel for="txtResp1" class="mdl-textfield__label" value="#{str.respostaCorreta}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                        </div>
+                        <div class="mdl-cell--bottom">
+                            <h:commandButton id="btnAdicionar" value="Adicionar"
+                                             class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" 
+                                             action="#{respostaMb.cadastraRespostaVerdadeira(pergunta)}"/>
+                        </div>
+                        </h:form>    
+                    </div>    
                 <h:messages tooltip="true" errorStyle="color:red" showDetail="false"/>
-
-
             </ui:define>
         </ui:composition>
     </body>
