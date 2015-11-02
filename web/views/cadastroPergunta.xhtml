@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../templates/eduquiztemplate.xhtml">
+
+            <ui:define name="content">
+
+                <h1>Cadastro de Pergunta</h1>  
+                <div class="mdl-grid">
+
+                    <div class="mdl-cell mdl-cell--3-col">
+                        <h4>Explicação</h4>
+                        <p>Nesta parte do site você pode cadastrar uma pergunta nova no sistema</p>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col">
+                        <div class="mdl-cell--top mdl-cell--hide-phone">
+
+
+                        </div>
+                        <div class="mdl-cell--middle">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtPergunta" class="mdl-textfield__input" value="#{perguntaMb.pergunta.pergunta}" required="true"/>
+                                <h:outputLabel for="txtPergunta" class="mdl-textfield__label" value="#{str.pergunta}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtMateria" class="mdl-textfield__input" value="#{perguntaMb.pergunta.materia}" required="true"/>
+                                <h:outputLabel for="txtMateria" class="mdl-textfield__label" value="#{str.materia}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtPontos" class="mdl-textfield__input" value="#{perguntaMb.pergunta.pontuacao}" required="true"/>
+                                <h:outputLabel for="txtPostos" class="mdl-textfield__label" value="#{str.pontuacao}"/>
+                                <span class="mdl-textfield__error">Apenas numeros</span>
+                            </div> 
+                        </div>
+                        <div class="mdl-cell--bottom">
+                            <h:commandButton id="btnAdicionar" value="Adicionar"
+                                             class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" 
+                                             action="#{perguntaMb.cadastraPergunta()}"/>
+                        </div>
+                    </div>
+
+                </div>                 
+
+                <h:messages tooltip="true" errorStyle="color:red" showDetail="false"/>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

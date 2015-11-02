@@ -21,10 +21,11 @@ public class PerguntaDaoBd implements InterfaceDao<Pergunta>{
         EntityManager em = JpaUtil.getEntityManager();
         em.getTransaction().begin();
 
-        Pergunta p = new Pergunta();
-        p.setMateria(bean.getMateria());
-        p.setPergunta(bean.getPergunta());
-        p.setPontuacao(bean.getPontuacao());
+        if(bean.getIdPergunta() == null){
+            em.persist(bean);
+        }else{
+            em.merge(bean);
+        }       
 
         em.getTransaction().commit();
         em.close();

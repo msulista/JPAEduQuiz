@@ -17,9 +17,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -50,10 +50,12 @@ public class Pergunta implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "materia")
     private String materia;
-    @JoinColumn(name = "IdQuiz", referencedColumnName = "IdQuiz")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //@JoinColumn(name = "IdQuiz", referencedColumnName = "IdQuiz")
+    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @Transient
     private Quiz quiz;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPergunta", fetch = FetchType.EAGER)
+   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPergunta", fetch = FetchType.EAGER)
+    @Transient
     private List<Resposta> respostaList;
 
     public Pergunta() {
