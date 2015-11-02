@@ -19,16 +19,16 @@ public class QuizDaoBd implements InterfaceDao<Quiz>{
    
 
     @Override
-    public void inserir(Quiz quiz) {
+    public void inserir(Quiz bean) {
         try{
                 EntityManager em = JpaUtil.getEntityManager();
                 em.getTransaction().begin();
                 
-                Quiz q = new Quiz();
-                q.setInicio(quiz.getInicio());
-                q.setTermino(quiz.getTermino());
-                q.setTempoResposta(quiz.getTempoResposta());
-                q.setEstado(quiz.getEstado());
+               if(bean.getIdQuiz() == null){
+                   em.persist(bean);
+               }else{
+                   em.merge(bean);
+               }
                 
                 em.getTransaction().commit();
                 em.close();
@@ -42,10 +42,10 @@ public class QuizDaoBd implements InterfaceDao<Quiz>{
        }
 
     @Override
-    public void deletar(Quiz quiz) {
+    public void deletar(Quiz bean) {
         EntityManager em = JpaUtil.getEntityManager();
         em.getTransaction().begin();        
-        em.remove(em.merge(quiz));
+        em.remove(em.merge(bean));
         em.getTransaction().commit();
         em.close();
     }

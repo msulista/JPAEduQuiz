@@ -42,7 +42,7 @@ public class QuizMb {
     
     public String carregarQuiz(Quiz q){
          this.quiz = q;
-         return "responderQuiz";
+         return "responderQuiz?faces-redirect=true";
     }
     
     

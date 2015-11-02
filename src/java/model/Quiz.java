@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -58,8 +59,9 @@ public class Quiz implements Serializable {
     private boolean estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
     private List<Pontuacao> pontuacaoList;
-    @JoinColumn(name = "IdTurma", referencedColumnName = "IdTurma")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+   // @JoinColumn(name = "IdTurma", referencedColumnName = "IdTurma")
+   // @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @Transient
     private Turma turma;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
     private List<Pergunta> perguntaList;
