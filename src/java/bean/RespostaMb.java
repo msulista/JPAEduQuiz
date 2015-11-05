@@ -37,7 +37,9 @@ public class RespostaMb {
     }
 
     public void cadastraRespostaFalsa(){
-        this.resposta.setPergunta(new Pergunta(1));
+        Pergunta pergunta = new Pergunta();
+        pergunta.setIdPergunta(1);
+        this.resposta.setPergunta(pergunta);
         this.resposta.setVerdadeira(false);
         this.respostaDao.inserir(resposta);
     }

@@ -7,7 +7,6 @@ package dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import model.Pergunta;
 import model.Resposta;
 import util.JpaUtil;
 
