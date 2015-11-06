@@ -21,11 +21,11 @@ public class RespostaDaoBd implements InterfaceDao<Resposta>{
         EntityManager em = JpaUtil.getEntityManager();
         em.getTransaction().begin();
         
-        if(bean.getIdResposta() == null){           
-            em.persist(bean);
-        }else{
-            em.merge(bean);
-        }
+//        if(bean.getIdResposta() == null){           
+//            em.persist(bean);
+//        }else{
+//            em.merge(bean);
+//        }
         
         em.getTransaction().commit();
         em.close();
