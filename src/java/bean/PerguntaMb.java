@@ -63,6 +63,7 @@ public class PerguntaMb {
     public void cadastraPergunta(){
         cadastraResposta();
         this.perguntaDao.inserir(pergunta);
+        pergunta = new Pergunta();
     }
     
     public void cadastraResposta(){
