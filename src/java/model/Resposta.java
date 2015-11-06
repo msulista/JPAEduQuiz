@@ -8,6 +8,7 @@ package model;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,18 +21,19 @@ import javax.validation.constraints.Size;
  *
  * @author Fabregas
  */
-@Entity
-@Table(name = "resposta")
-public class Resposta implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idResposta")
-    private Integer idResposta;
+//@Entity
+//@Table(name = "resposta")
+@Embeddable
+public class Resposta{
+//    private static final long serialVersionUID = 1L;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Basic(optional = false)
+//    @Column(name = "idResposta")
+//    private Integer idResposta;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2147483647)
+//    @Size(min = 1, max = 2147483647)
     @Column(name = "resposta_text")
     private String respostaText;
     @Basic(optional = false)
@@ -45,23 +47,23 @@ public class Resposta implements Serializable {
     public Resposta() {
     }
 
-    public Resposta(Integer idResposta) {
-        this.idResposta = idResposta;
-    }
+//    public Resposta(Integer idResposta) {
+//        this.idResposta = idResposta;
+//    }
 
     public Resposta(Integer idResposta, String respostaText, boolean verdadeira) {
-        this.idResposta = idResposta;
+//        this.idResposta = idResposta;
         this.respostaText = respostaText;
         this.verdadeira = verdadeira;
     }
 
-    public Integer getIdResposta() {
-        return idResposta;
-    }
-
-    public void setIdResposta(Integer idResposta) {
-        this.idResposta = idResposta;
-    }
+//    public Integer getIdResposta() {
+//        return idResposta;
+//    }
+//
+//    public void setIdResposta(Integer idResposta) {
+//        this.idResposta = idResposta;
+//    }
 
     public String getRespostaText() {
         return respostaText;
@@ -87,29 +89,29 @@ public class Resposta implements Serializable {
 //        this.pergunta = pergunta;
 //    }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idResposta != null ? idResposta.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Resposta)) {
-            return false;
-        }
-        Resposta other = (Resposta) object;
-        if ((this.idResposta == null && other.idResposta != null) || (this.idResposta != null && !this.idResposta.equals(other.idResposta))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "model.Resposta[ idResposta=" + idResposta + " ]";
-    }
+//    @Override
+//    public int hashCode() {
+//        int hash = 0;
+//        hash += (idResposta != null ? idResposta.hashCode() : 0);
+//        return hash;
+//    }
+//
+//    @Override
+//    public boolean equals(Object object) {
+//        // TODO: Warning - this method won't work in the case the id fields are not set
+//        if (!(object instanceof Resposta)) {
+//            return false;
+//        }
+//        Resposta other = (Resposta) object;
+//        if ((this.idResposta == null && other.idResposta != null) || (this.idResposta != null && !this.idResposta.equals(other.idResposta))) {
+//            return false;
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "model.Resposta[ idResposta=" + idResposta + " ]";
+//    }
     
 }
