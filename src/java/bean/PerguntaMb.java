@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import model.Pergunta;
+import model.Resposta;
 
 /**
  *
@@ -28,12 +29,22 @@ public class PerguntaMb {
     private Pergunta pergunta;
     private InterfaceDao perguntaDao;
     private DataModel listaPerguntas;
+    private String respostas[];
     
     public PerguntaMb() {
+        this.respostas = new String[4];
         this.pergunta = new Pergunta();
-        this.perguntaDao = new PerguntaDaoBd();
+        this.perguntaDao = new PerguntaDaoBd();        
     }
 
+    public String[] getRespostas() {
+        return respostas;
+    }
+
+    public void setRespostas(String[] respostas) {
+        this.respostas = respostas;
+    }
+    
     public Pergunta getPergunta() {
         return pergunta;
     }
@@ -50,7 +61,24 @@ public class PerguntaMb {
     }
     
     public void cadastraPergunta(){
+        cadastraResposta();
         this.perguntaDao.inserir(pergunta);
+    }
+    
+    public void cadastraResposta(){
+        for (int i = 0; i < 4; i++) {
+            if(i == 0){
+               Resposta resposta = new Resposta();
+               resposta.setRespostaText(this.respostas[0]);
+               resposta.setVerdadeira(true);
+               this.pergunta.adicionaResposta(resposta);
+            }else{
+                Resposta resposta = new Resposta();
+                resposta.setRespostaText(this.respostas[i]);
+                resposta.setVerdadeira(false);
+                this.pergunta.adicionaResposta(resposta);
+            }
+        }
     }
     
 }

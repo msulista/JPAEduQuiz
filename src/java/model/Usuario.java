@@ -141,7 +141,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "model.Usuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

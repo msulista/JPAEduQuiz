@@ -99,7 +99,7 @@ public class Turma implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.Turma[ idTurma=" + idTurma + " ]";
+        return "model.Turma[ idTurma=" + idTurma + " ]";
     }
     
 }

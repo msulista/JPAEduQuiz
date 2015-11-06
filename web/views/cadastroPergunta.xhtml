@@ -36,6 +36,27 @@
                                 <h:outputLabel for="txtPostos" class="mdl-textfield__label" value="#{str.pontuacao}"/>
                                 <span class="mdl-textfield__error">Apenas numeros</span>
                             </div> 
+                            <h2>Respostas</h2>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtResposta1" class="mdl-textfield__input" value="#{perguntaMb.respostas[0]}" required="true"/>
+                                <h:outputLabel for="txtResposta1" class="mdl-textfield__label" value="#{str.respostaCorreta}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtResposta2" class="mdl-textfield__input" value="#{perguntaMb.respostas[1]}" required="true"/>
+                                <h:outputLabel for="txtResposta2" class="mdl-textfield__label" value="#{str.respostaErrada}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtResposta3" class="mdl-textfield__input" value="#{perguntaMb.respostas[2]}" required="true"/>
+                                <h:outputLabel for="txtResposta3" class="mdl-textfield__label" value="#{str.respostaErrada}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtResposta4" class="mdl-textfield__input" value="#{perguntaMb.respostas[3]}" required="true"/>
+                                <h:outputLabel for="txtResposta4" class="mdl-textfield__label" value="#{str.respostaErrada}"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
                         </div>
                     </div>
                     <div class="mdl-cell--bottom">

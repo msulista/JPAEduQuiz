@@ -167,7 +167,7 @@ public class Quiz implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.Quiz[ idQuiz=" + idQuiz + " ]";
+        return "model.Quiz[ idQuiz=" + idQuiz + " ]";
     }
     
 }

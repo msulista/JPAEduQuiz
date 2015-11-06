@@ -108,7 +108,7 @@ public class Pontuacao implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.Pontuacao[ idPontuacao=" + idPontuacao + " ]";
+        return "model.Pontuacao[ idPontuacao=" + idPontuacao + " ]";
     }
     
 }

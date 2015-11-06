@@ -6,18 +6,15 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -54,15 +51,16 @@ public class Pergunta implements Serializable {
     //@ManyToOne(optional = false, fetch = FetchType.EAGER)
     @Transient
     private Quiz quiz;
-   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPergunta", fetch = FetchType.EAGER)
-    @Transient
+    @ElementCollection  
     private List<Resposta> respostaList;
 
     public Pergunta() {
+        this.respostaList = new ArrayList<>();
     }
 
     public Pergunta(Integer idPergunta) {
         this.idPergunta = idPergunta;
+        this.respostaList = new ArrayList<>();
     }
 
     public Pergunta(Integer idPergunta, String pergunta, double pontuacao, String materia) {
@@ -70,6 +68,7 @@ public class Pergunta implements Serializable {
         this.pergunta = pergunta;
         this.pontuacao = pontuacao;
         this.materia = materia;
+        this.respostaList = new ArrayList<>();
     }
 
     public Integer getIdPergunta() {
@@ -119,6 +118,10 @@ public class Pergunta implements Serializable {
     public void setRespostaList(List<Resposta> respostaList) {
         this.respostaList = respostaList;
     }
+    
+    public void adicionaResposta(Resposta resposta){
+        this.respostaList.add(resposta);
+    }
 
     @Override
     public int hashCode() {
@@ -142,7 +145,7 @@ public class Pergunta implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.Pergunta[ idPergunta=" + idPergunta + " ]";
+        return "model.Pergunta[ idPergunta=" + idPergunta + " ]";
     }
     
 }

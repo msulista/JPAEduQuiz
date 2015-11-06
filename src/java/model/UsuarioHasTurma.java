@@ -62,7 +62,7 @@ public class UsuarioHasTurma implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.UsuarioHasTurma[ usuarioHasTurmaPK=" + usuarioHasTurmaPK + " ]";
+        return "model.UsuarioHasTurma[ usuarioHasTurmaPK=" + usuarioHasTurmaPK + " ]";
     }
     
 }

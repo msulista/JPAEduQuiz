@@ -9,12 +9,9 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,9 +38,9 @@ public class Resposta implements Serializable {
     @NotNull
     @Column(name = "verdadeira")
     private boolean verdadeira;
-    @JoinColumn(name = "idPergunta", referencedColumnName = "idPergunta")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Pergunta pergunta;
+    //@JoinColumn(name = "idPergunta", referencedColumnName = "idPergunta")
+    // @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //private Pergunta pergunta;
 
     public Resposta() {
     }
@@ -82,13 +79,13 @@ public class Resposta implements Serializable {
         this.verdadeira = verdadeira;
     }
 
-    public Pergunta getPergunta() {
-        return pergunta;
-    }
-
-    public void setPergunta(Pergunta pergunta) {
-        this.pergunta = pergunta;
-    }
+//    public Pergunta getPergunta() {
+//        return pergunta;
+//    }
+//
+//    public void setPergunta(Pergunta pergunta) {
+//        this.pergunta = pergunta;
+//    }
 
     @Override
     public int hashCode() {
@@ -112,7 +109,7 @@ public class Resposta implements Serializable {
 
     @Override
     public String toString() {
-        return "pojos.Resposta[ idResposta=" + idResposta + " ]";
+        return "model.Resposta[ idResposta=" + idResposta + " ]";
     }
     
 }

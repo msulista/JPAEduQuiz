@@ -5,7 +5,6 @@
     <class>model.Usuario</class>
     <class>model.Pergunta</class>
     <class>model.Resposta</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>

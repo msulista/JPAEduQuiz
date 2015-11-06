@@ -36,18 +36,16 @@ public class RespostaMb {
         this.resposta = resposta;
     }
 
-    public void cadastraRespostaFalsa(){
-        Pergunta pergunta = new Pergunta();
-        pergunta.setIdPergunta(1);
-        this.resposta.setPergunta(pergunta);
+    public void cadastraRespostaFalsa(String resp){
+        this.resposta.setRespostaText(resp);
         this.resposta.setVerdadeira(false);
         this.respostaDao.inserir(resposta);
     }
-//    public void cadastraRespostaVerdadeira(Pergunta pergunta){
-//        this.resposta.setPergunta(pergunta);
-//        this.resposta.setVerdadeira(true);
-//        this.respostaDao.inserir(resposta);
-//    }
+    public void cadastraRespostaVerdadeira(String resp){
+        this.resposta.setRespostaText(resp);
+        this.resposta.setVerdadeira(true);
+        this.respostaDao.inserir(resposta);
+    }
     
     @Override
     public int hashCode() {
