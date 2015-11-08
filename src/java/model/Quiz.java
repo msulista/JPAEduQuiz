@@ -18,6 +18,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,39 +33,40 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "quiz")
+@NamedQueries({@NamedQuery(name="Quiz.findAll", query="SELECT q FROM Quiz q")})
+
 public class Quiz implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IdQuiz")
+    @Column(name = "idQuiz")
     private Integer idQuiz;
+    private String nome;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "inicio")
+//    @Temporal(TemporalType.DATE)
+//    private Date inicio;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "termino")
+//    @Temporal(TemporalType.DATE)
+//    private Date termino;
+//    @Basic(optional = false)
+//    @NotNull
+//    @Column(name = "tempo_resposta")
+//    @Temporal(TemporalType.TIME)
+//    private Date tempoResposta;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "inicio")
-    @Temporal(TemporalType.DATE)
-    private Date inicio;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "termino")
-    @Temporal(TemporalType.DATE)
-    private Date termino;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "tempo_resposta")
-    @Temporal(TemporalType.TIME)
-    private Date tempoResposta;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "estado")
     private boolean estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
-    private List<Pontuacao> pontuacaoList;
+   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
+   //private List<Pontuacao> pontuacaoList;
    // @JoinColumn(name = "IdTurma", referencedColumnName = "IdTurma")
    // @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @Transient
     private Turma turma;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idQuiz", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz", fetch = FetchType.EAGER)
     private List<Pergunta> perguntaList;
 
     public Quiz() {
@@ -75,12 +78,29 @@ public class Quiz implements Serializable {
 
     public Quiz(Integer idQuiz, Date inicio, Date termino, Date tempoResposta, boolean estado) {
         this.idQuiz = idQuiz;
-        this.inicio = inicio;
-        this.termino = termino;
-        this.tempoResposta = tempoResposta;
+//        this.inicio = inicio;
+//        this.termino = termino;
+//        this.tempoResposta = tempoResposta;
         this.estado = estado;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
     public Integer getIdQuiz() {
         return idQuiz;
     }
@@ -89,45 +109,45 @@ public class Quiz implements Serializable {
         this.idQuiz = idQuiz;
     }
 
-    public Date getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    public Date getTermino() {
-        return termino;
-    }
-
-    public void setTermino(Date termino) {
-        this.termino = termino;
-    }
-
-    public Date getTempoResposta() {
-        return tempoResposta;
-    }
-
-    public void setTempoResposta(Date tempoResposta) {
-        this.tempoResposta = tempoResposta;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public List<Pontuacao> getPontuacaoList() {
-        return pontuacaoList;
-    }
-
-    public void setPontuacaoList(List<Pontuacao> pontuacaoList) {
-        this.pontuacaoList = pontuacaoList;
-    }
+//    public Date getInicio() {
+//        return inicio;
+//    }
+//
+//    public void setInicio(Date inicio) {
+//        this.inicio = inicio;
+//    }
+//
+//    public Date getTermino() {
+//        return termino;
+//    }
+//
+//    public void setTermino(Date termino) {
+//        this.termino = termino;
+//    }
+//
+//    public Date getTempoResposta() {
+//        return tempoResposta;
+//    }
+//
+//    public void setTempoResposta(Date tempoResposta) {
+//        this.tempoResposta = tempoResposta;
+//    }
+//
+//    public boolean getEstado() {
+//        return estado;
+//    }
+//
+//    public void setEstado(boolean estado) {
+//        this.estado = estado;
+//    }
+//
+//    public List<Pontuacao> getPontuacaoList() {
+//        return pontuacaoList;
+//    }
+//
+//    public void setPontuacaoList(List<Pontuacao> pontuacaoList) {
+//        this.pontuacaoList = pontuacaoList;
+//    }
 
     public Turma getTurma() {
         return turma;

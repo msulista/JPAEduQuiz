@@ -36,7 +36,7 @@ public class UsuarioMb {
     }
     
     public DataModel retornaListaDeUsuarios() {
-        List<Usuario> lista = usuarioDao.listar();
+        List<Usuario> lista = usuarioDao.listar();        
         listaUsuarios = new ListDataModel(lista);
         
          return listaUsuarios;        

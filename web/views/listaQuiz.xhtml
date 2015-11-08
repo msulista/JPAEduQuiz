@@ -18,36 +18,30 @@
                     <br/>
                 </div>
                 <div class="mdl-cell--middle table-responsive">
-                    <h:dataTable value="#{quizMB.retornaListaDeQuiz()}" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" var="quiz" id="dtQuiz">
+                    <h:dataTable value="#{quizMb.retornaListaDeQuiz()}" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" var="dtQuiz">
                         <h:column>
                             <f:facet name="header">
                                 ID
                             </f:facet>
-                            <h:outputText value="#{quiz.idquiz}"/>
+                            <h:outputText value="#{quizMb.quiz.idQuiz}"/>
                         </h:column>
                         <h:column>
+                            <f:facet name="header">
+                                Nome
+                            </f:facet>
+                            <h:outputText value="#{quizMb.quiz.nome}" class="mdl-data-table__cell--non-numeric"/>
+                        </h:column>
+                       <h:column>
                             <f:facet name="header">
                                 Estado
                             </f:facet>
-                            <h:outputText value="#{quiz.publicar}" class="mdl-data-table__cell--non-numeric"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                Inicio do Quiz
-                            </f:facet>
-                            <h:outputText value="#{quiz.inicioQuiz}" class="mdl-data-table__cell--non-numeric"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                Final do Quiz
-                            </f:facet>
-                            <h:outputText value="#{quiz.finalQuiz}"/>
+                           <h:outputText value="#{quizMb.quiz.estado}" class="mdl-data-table__cell--non-numeric"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 Selecionar
                             </f:facet>
-                            <h:commandButton value="description" action="#{questionarioMB.carregarQuiz(quiz)}" class="mdl-button mdl-js-button mdl-button--icon material-icons"/>
+                            <h:commandButton value="description" action="#{perguntaMb.carregarQuiz(quizMb.quiz)}" class="mdl-button mdl-js-button mdl-button--icon material-icons"/>
                             </h:column>
                     </h:dataTable>                    
                 </div>

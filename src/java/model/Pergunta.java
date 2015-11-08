@@ -17,8 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -48,13 +48,12 @@ public class Pergunta implements Serializable {
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "materia")
-    private String materia;
-    //@JoinColumn(name = "IdQuiz", referencedColumnName = "IdQuiz")
-    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @Transient
+    private String materia;    
+    @ManyToOne  
+    @JoinColumn(name = "idQuiz", referencedColumnName = "idQuiz")
     private Quiz quiz;
     @ElementCollection  
-     @CollectionTable(name="respostas", joinColumns=@JoinColumn(name="perguntaId"))
+    @CollectionTable(name="respostas", joinColumns=@JoinColumn(name="perguntaId"))
     private List<Resposta> respostaList;
 
     public Pergunta() {

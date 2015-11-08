@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templates/eduquiztemplate.xhtml">
+
+            <ui:define name="content">
+                <h2>Lista de usuario</h2>
+        <div class="mdl-grid" >
+
+
+            <div class="mdl-cell mdl-cell--12-col">
+                <div class="mdl-cell--top mdl-cell--hide-phone">
+                    <h4>Explicação</h4>
+                    <p>Tem que selecionar um quiz para resolver.</p>
+                    <br/>
+                </div>
+                <div class="mdl-cell--middle table-responsive">
+                    <h:dataTable value="#{usuarioMb.retornaListaDeUsuarios()}" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" var="dtUsuario">
+                        <h:column>
+                            <f:facet name="header">
+                                ID
+                            </f:facet>
+                            <h:outputText value="#{usuarioMb.usuario.nome}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header">
+                                Selecionar
+                            </f:facet>
+                            <h:commandButton value="description" action="#{usuarioMb.usuario.senha}" class="mdl-button mdl-js-button mdl-button--icon material-icons"/>
+                            </h:column>
+                    </h:dataTable>                    
+                </div>
+
+            </div>
+        </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -13,6 +13,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import model.Pergunta;
+import model.Quiz;
 import model.Resposta;
 
 /**
@@ -27,13 +28,15 @@ public class PerguntaMb {
      * Creates a new instance of PerguntaMb
      */
     private Pergunta pergunta;
-    private InterfaceDao perguntaDao;
+    private PerguntaDaoBd perguntaDao;
     private DataModel listaPerguntas;
     private String respostas[];
+    private Quiz quiz;
     
     public PerguntaMb() {
         this.respostas = new String[4];
         this.pergunta = new Pergunta();
+        this.quiz = new Quiz();
         this.perguntaDao = new PerguntaDaoBd();        
     }
 
@@ -53,18 +56,26 @@ public class PerguntaMb {
         this.pergunta = pergunta;
     }    
     
-    public DataModel retornaListaPerguntas(){
-        List<Pergunta> lista = perguntaDao.listar();
-        this.listaPerguntas = new ListDataModel(lista);
-        
-        return (listaPerguntas);
-    }
+    
     
     public void cadastraPergunta(){
         cadastraResposta();
         this.perguntaDao.inserir(pergunta);
         pergunta = new Pergunta();
     }
+    
+    public String carregarQuiz(Quiz q){
+         this.quiz = q;
+         
+         return "responderQuiz?faces-redirect=true";
+    }
+    public DataModel retornaListaPerguntas(){
+        List<Pergunta> lista = perguntaDao.listaPerguntaQuiz(this.quiz);
+        this.listaPerguntas = new ListDataModel(lista);
+        
+        return (listaPerguntas);
+    }
+   
     
     public void cadastraResposta(){
         for (int i = 0; i < 4; i++) {

@@ -22,6 +22,11 @@
                         </div>
                         <div class="mdl-cell--middle">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
+                                <h:inputText id="txtPer" class="mdl-textfield__input" value="#{perguntaMb.pergunta.quiz}" required="true"/>
+                                <h:outputLabel for="txtPer" class="mdl-textfield__label" value="Quiz"/>
+                                <span class="mdl-textfield__error">Apenas letras</span>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
                                 <h:inputText id="txtPergunta" class="mdl-textfield__input" value="#{perguntaMb.pergunta.pergunta}" required="true"/>
                                 <h:outputLabel for="txtPergunta" class="mdl-textfield__label" value="#{str.pergunta}"/>
                                 <span class="mdl-textfield__error">Apenas letras</span>

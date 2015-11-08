@@ -14,9 +14,7 @@ import util.JpaUtil;
  *
  * @author marcus.rodrigues
  */
-public class QuizDaoBd implements InterfaceDao<Quiz>{
-    
-   
+public class QuizDaoBd implements InterfaceDao<Quiz>{   
 
     @Override
     public void inserir(Quiz bean) {
@@ -58,9 +56,25 @@ public class QuizDaoBd implements InterfaceDao<Quiz>{
     @Override
     public List<Quiz> listar() {
         EntityManager em = JpaUtil.getEntityManager();
-        List<Quiz> listaQuiz = em.createQuery("SELECT p FROM Quiz q").getResultList();
+        List listaQuiz;
+        try{
+            //listaQuiz = em.createQuery("SELECT q FROM Quiz q").getResultList();
+            listaQuiz = em.createNativeQuery("Select * from quiz").getResultList();
+            if (listaQuiz != null) {
+                
+            return listaQuiz;
+            }else
+                return null;
+        }
+        catch(Exception ex){
+         throw ex;
+         
+        }
+        finally{
         em.close();
-        return (listaQuiz);
+        }
+        
+        
          
     }
         

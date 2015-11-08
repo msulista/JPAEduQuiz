@@ -53,7 +53,8 @@ public class UsuarioDaoBd implements InterfaceDao<Usuario>{
     public List listar() {
         
         EntityManager em = JpaUtil.getEntityManager();
-        List<Usuario> listaUsuario = em.createQuery("SELECT p FROM Usuario u").getResultList();
+        //List<Usuario> listaUsuario = em.createQuery("SELECT u FROM Usuario u").getResultList();
+        List<Usuario> listaUsuario = em.createNativeQuery("SELECT * FROM Usuario").getResultList();
         em.close();
         return (listaUsuario);
     }

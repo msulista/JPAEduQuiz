@@ -40,7 +40,7 @@ public class Pontuacao implements Serializable {
     private Quiz idQuiz;
     @JoinColumn(name = "IdUsuario", referencedColumnName = "IdUsuario")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Usuario idUsuario;
+    private Usuario Usuario;
 
     public Pontuacao() {
     }
@@ -78,12 +78,12 @@ public class Pontuacao implements Serializable {
         this.idQuiz = idQuiz;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return Usuario;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario Usuario) {
+        this.Usuario = Usuario;
     }
 
     @Override

@@ -5,6 +5,7 @@
     <class>model.Usuario</class>
     <class>model.Pergunta</class>
     <class>model.Resposta</class>
+    <class>model.Quiz</class>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>

@@ -17,26 +17,14 @@
                     </div>
                 </div>
                 <div class="mdl-cell mdl-cell--8-col">
-                    <ui:repeat var="quiz" value="#{questionarioMB.retornaListaDeQuestionario()}">
+                    <ui:repeat var="quiz" value="#{perguntaMb.retornaListaPerguntas()}">
 
                         <div class="mdl-shadow--2dp ">
-                            <h4><h:outputText value="#{quiz.pergunta}"/></h4>
+                            <h4><h:outputText value="#{perguntaMb.pergunta.pergunta}"/></h4>
                             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--8-col" for="option-1">
                                 <input type="radio" id="option-1" class="mdl-radio__button mdl-radio__button--primary" name="options" value="" />
-                                <h:outputText class="mdl-radio__label" value="#{quiz.respostaCorreta}"/>
-                            </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--8-col" for="option-2">
-                                <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="" />
-                                <h:outputText class="mdl-radio__label" value="#{quiz.respostaErro01}"/>
-                            </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--8-col" for="option-3">
-                                <input type="radio" id="option-3" class="mdl-radio__button" name="options" value=""/>
-                                <h:outputText class="mdl-radio__label" value="#{quiz.respostaErro02}"/>
-                            </label>
-                            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect mdl-cell--8-col" for="option-4">
-                                <input type="radio" id="option-4" class="mdl-radio__button" name="options" value="" />
-                                <h:outputText class="mdl-radio__label" value="#{quiz.respostaErro03}"/>
-                            </label>
+                                <h:outputText class="mdl-radio__label" value=""/>
+                            </label>                            
                             <div class="mdl-card__actions mdl-card--border">
                                 <h:commandButton class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised" value="submit"/>
                                 

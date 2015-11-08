@@ -8,27 +8,27 @@
 
         <ui:composition template="./../templates/eduquiztemplate.xhtml">
             <ui:define name="content">
-                <h1>Cadastro de Resposta</h1>  
+                <h1>Cadastro de Quiz</h1>  
                 <div class="mdl-grid">
                     <div class="mdl-cell mdl-cell--3-col">
                         <h4>Explicação</h4>
-                        <p>Nesta parte do site você pode cadastrar uma resposta nova no sistema</p>
+                        <p>Nesta parte do site você pode cadastrar um quiz novo no sistema</p>
                     </div>
                     <div class="mdl-cell mdl-cell--4-col">
                         <div class="mdl-cell--top mdl-cell--hide-phone">
                         </div>
                         <div class="mdl-cell--middle">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--8-col">
-                                <h:inputText id="txtResposta" class="mdl-textfield__input" value="#{respostaMb.resposta.respostaText}" required="true"/>
-                                <h:outputLabel for="txtResposta" class="mdl-textfield__label" value="#{str.respostaCorreta}"/>
+                                <h:inputText id="nome" class="mdl-textfield__input" value="#{quizMb.quiz.nome}" required="true"/>
+                                <h:outputLabel for="nome" class="mdl-textfield__label" value="#{str.nome}"/>
                                 <span class="mdl-textfield__error">Apenas letras</span>
                             </div>                             
-                        </div>
+                        </div>                        
                     </div>
                     <div class="mdl-cell--bottom">
                             <h:commandButton id="btnAdicionar" value="Adicionar"
                                              class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent" 
-                                             action="#{respostaMb.cadastraRespostaFalsa()}"/>
+                                             action="#{quizMb.cadastraQuiz()}"/>
                     </div>
                 </div>                     
                 <h:messages tooltip="true" errorStyle="color:red" showDetail="false"/>
